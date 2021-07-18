@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><img src="RackMultipart20210718-4-1lpo92u_html_ffb1dd0639f22f75.jpg" alt=""></p>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E5%BE%8C%E7%B7%A8">深層学習（後編）</h1>
+<p>ラビットチャレンジ</p>
+<p>竹田稔 | 個人向けコース | 2021-07-18</p>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92day%EF%BC%93">深層学習day３</h1>
+<h1 id="%EF%BC%91%E5%86%8D%E5%B8%B0%E5%9E%8B%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E6%A6%82%E5%BF%B5">１．再帰型ニューラルネットワークの概念</h1>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BD%92%EF%BD%8E%EF%BD%8E%E5%85%A8%E4%BD%93%E5%83%8F">１－１．ＲＮＮ全体像</h2>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BD%92%EF%BD%8E%EF%BD%8E%E3%81%A8%E3%81%AF">１－１－１．ＲＮＮとは</h2>
+<p><strong>時系列データ</strong> に対応可能な、ニューラルネットワークである。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92%E6%99%82%E7%B3%BB%E5%88%97%E3%83%87%E3%83%BC%E3%82%BF">１－１－２．時系列データ</h2>
+<p>時間的順序を追って一定間隔ごとに観察され、しかも相互に統計的依存関係が認められるようなデータの系列である。音声データ、テキストデータなど。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93%EF%BD%92%EF%BD%8E%EF%BD%8E%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">１－１－３．ＲＮＮについて</h2>
+<p>初期の状態と過去の時間t-1の状態を保持し、そこから次の時間を再帰的に求める再帰構造が必要になる。</p>
+<p>確認テスト：ＲＮＮの3つの重み</p>
+<p>・入力から現在の中間層を定義する際にかけられる重み</p>
+<p>・中間層から出力を定義する際にかけられる重み</p>
+<p>・中間層から次の中間層に渡される際にかけられる重み</p>
+<p>演習：</p>
+<p><img src="img/Web_capture_24-6-2021_115218_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<p>[try] weight_init_stdやlearning_rate, hidden_layer_sizeを変更してみよう</p>
+<p><img src="img/Web_capture_24-6-2021_12626_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<p>[try] 重みの初期化方法を変更してみよう</p>
+<p>・Xavier</p>
+<p>Web_capture_25-6-2021_11573_localhost
+<img src="img/Web_capture_25-6-2021_11573_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<p>・He</p>
+<p><img src="img/Web_capture_25-6-2021_12010_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<p>[try] 中間層の活性化関数を変更してみよう</p>
+<p>・ ReLU(勾配爆発を確認しよう)</p>
+<p><img src="img/Web_capture_25-6-2021_12750_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<p>・ tanh(numpyにtanhが用意されている。導関数をd_tanhとして作成しよう)</p>
+<p><img src="img/Web_capture_25-6-2021_122242_localhost.jpeg" alt="3_1_simple_RNN"></p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BD%82%EF%BD%90%EF%BD%94%EF%BD%94">１－２．ＢＰＴＴ</h2>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91%EF%BD%82%EF%BD%90%EF%BD%94%EF%BD%94%E3%81%A8%E3%81%AF">１－２－１．ＢＰＴＴとは</h2>
+<p>ＲＮＮにおいてのパラメータ調整方法の一種 ～ 誤差逆伝播の一種。</p>
+<p>誤差は時間をさかのぼって逆伝播していることになる(Backpropagation Through Time)。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%92%EF%BD%82%EF%BD%90%EF%BD%94%EF%BD%94%E3%81%AE%E6%95%B0%E5%AD%A6%E7%9A%84%E8%A8%98%E8%BF%B0">１－２－２．ＢＰＴＴの数学的記述</h2>
+<p>確認テスト：y1 = sigmoid(z1Wout + c) z1 = sigmoid(s0W + x1w(u) + b)</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BD%82%EF%BD%90%EF%BD%94%EF%BD%94%E3%81%AE%E5%85%A8%E4%BD%93%E5%83%8F">１－２－３．ＢＰＴＴの全体像</h2>
+<p>演習問題：</p>
+<p>def bptt(xs, ys, W, U, V):</p>
+<p>hiddens, outputs = rnn_net(xs, W, U, V)</p>
+<p>dW = np.zeros_like[W]</p>
+<p>dU = np.zeros_like[U]</p>
+<p>dV = np.zeros_like[V]</p>
+<p>do = _catculate_do(outputs, ys)</p>
+<p>batch_size, n_seq = ys.shape[:2]</p>
+<p>for t in reversed(range(n_seq)):</p>
+<p>dV += np.dot(do[:,t],t).T, hiddens8:, t]) / batch_size</p>
+<p>delta_t = do[:, t].dot(V)</p>
+<p>for bptt_step in reversed(range(t+1)):</p>
+<p>dW += np.dot(delta_t.T, xs[:,batt_step]) / batch_size</p>
+<p>dU += np.dot(delta_t.T, hidden[:,batt_step-1]) / batch_size</p>
+<p>delta_t = delta_t.dot(U)</p>
+<p>return dW, dU, dV</p>
+<h1 id="%EF%BC%92%EF%BD%8C%EF%BD%93%EF%BD%94%EF%BD%8D">２．ＬＳＴＭ</h1>
+<p>モデルの構造自体を変えて勾配消失を解決する。</p>
+<p>確認テスト：シグモイド関数を微分した時、最大値は0.25である。</p>
+<p>演習問題：</p>
+<p>def gradient_clipping(grad, threshold):</p>
+<p>norm = np.linalg.norm(grad)</p>
+<p>rate = threshold / norm</p>
+<p>if rate &amp;lt; 1:</p>
+<p>return gradient * rate</p>
+<p>return grad</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%91%EF%BD%83%EF%BD%85%EF%BD%83">２－１．ＣＥＣ</h2>
+<p>勾配消失および勾配爆発の解決方法として、勾配を1とすることで解決する。</p>
+<p>問題点：入力データについて、時間依存度に関係なく重みが一律となるので、学習特性がなくなる。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%92%E5%85%A5%E5%8A%9B%E3%82%B2%E3%83%BC%E3%83%88%E3%81%A8%E5%87%BA%E5%8A%9B%E3%82%B2%E3%83%BC%E3%83%88">２－２．入力ゲートと出力ゲート</h2>
+<p>入力ゲートと出力ゲートを追加することで、それぞれのゲートへの入力値の重みを、重み行列で可変可能とすることで、ＣＥＣの問題点を解決する。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%93%E5%BF%98%E5%8D%B4%E3%82%B2%E3%83%BC%E3%83%88">２－３．忘却ゲート</h2>
+<p>過去の情報が要らなくなったタイミングで、情報を忘却する。</p>
+<p>確認テスト：なくなっても影響のない要素に作用するのは、忘却ゲートである。</p>
+<p>演習チャレンジ：</p>
+<p>def lstm(x, prev_h, prev_c, w, u, b):</p>
+<p>lstm_in = _activation(x.dot(W.T) + prev_h.dot(U.T) + b)</p>
+<p>a, i, f, o = np.hsplit(lstm_in, 4)</p>
+<p>a = np.tanh(a)</p>
+<p>input_gate = _sigmoid(i)</p>
+<p>forget_gate = _sigmoid(f)</p>
+<p>output_gate = _sigmoid(o)</p>
+<p>c = input_gate * a + forget_gate * c</p>
+<p>h = output_gate * np.tanh(c)</p>
+<p>return c, h</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%94%E8%A6%97%E3%81%8D%E7%A9%B4%E7%B5%90%E5%90%88">２－４．覗き穴結合</h2>
+<p>ＣＥＣ自身の値に、重み行列を介して伝播可能にした（ゲート制御する）構造となっている。</p>
+<h1 id="%EF%BC%93%EF%BD%87%EF%BD%92%EF%BD%95gated-recurrent-unit">３．ＧＲＵ（Gated Recurrent Unit）</h1>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BD%87%EF%BD%92%EF%BD%95">３－１．ＧＲＵ</h2>
+<p>ＬＳＴＭと同様にＲＮＮの一種であり、単純なＲＮＮにおいて問題となる勾配消失問題を解決し、長期的な依存関係を学習することができる。</p>
+<p>ＬＳＴＭのパラメータ（変数の数やゲートの数）を大幅に削減して、精度は同等またはそれ以上が望める様になった構造となっている。</p>
+<p>メリット：計算負荷が低い。</p>
+<p>確認テスト：</p>
+<p>ＬＳＴＭの課題：パラメータ数が多いため、計算負荷が大きい。</p>
+<p>ＣＥＣの課題：入力データについて、時間依存度に関係なく重みが一律となるので、学習特性がなくなる。</p>
+<p>ハンズオン：</p>
+<p><img src="img/Web_capture_24-6-2021_121551_localhost.jpeg" alt="predict_word"></p>
+<p>演習チャレンジ：</p>
+<p>def gru(x, h, W_r, U_r, W_z, U_z, W, U):</p>
+<p>r = _sigmoid(x.dot(W_r.T) + h.dot(U_r.T)</p>
+<p>z = _sigmoid(x.dot(W_z.T) + h.dot(U_z.T)</p>
+<p>h_bar = np.tanh(x.dot(W.T) + (r * h).dot(U.T))</p>
+<p>h_new = (1–z) * h + z * h_bar</p>
+<p>return h_new</p>
+<p>確認テスト：ＬＳＴＭのパラメータを大幅に削減して、精度は同等またはそれ以上が望める様にしたのがＣＥＣである。</p>
+<h1 id="%EF%BC%94%E5%8F%8C%E6%96%B9%E5%90%91%EF%BD%92%EF%BD%8E%EF%BD%8E">４．双方向ＲＮＮ</h1>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%E5%8F%8C%E6%96%B9%E5%90%91%EF%BD%92%EF%BD%8E%EF%BD%8E">４－１．双方向ＲＮＮ</h2>
+<p><strong>過去</strong> の情報だけでなく、 <strong>未来</strong> の情報を加味することで、精度を向上させるためのモデルである。文章の推敲や機械翻訳などで使用される。</p>
+<p>演習チャレンジ：</p>
+<p>def bidirectional_rnn_net(xs, W_f, U_f, W_b, U_b, V)</p>
+<p>xs_f = np.zeros_like(xs)</p>
+<p>xs_s = np.zeros_like(xs)</p>
+<p>for I, x in enumerate(xs):</p>
+<p>xs_f[i] = x</p>
+<p>xs_b[i] = x[::-1]</p>
+<p>hs_f = _rnn(xs_f, W_f, U_f)</p>
+<p>hs_b = _rnn(xs_b, W_b, U_b)</p>
+<p>hs =np.concatenate([h_f, h_b[::-1]], axis=1)</p>
+<p>ys =hs.dot(V.T)</p>
+<p>return ys</p>
+<h1 id="%EF%BC%95%EF%BD%93%EF%BD%85%EF%BD%91%EF%BC%92%EF%BD%93%EF%BD%85%EF%BD%91">５．Ｓｅｑ２Ｓｅｑ</h1>
+<p>Encoder-Decoderモデルの一種を指します。機械対話や、機械翻訳などに使用されている。Encoder、DecoderともにＲＮＮであり、入力の時系列データをEncoderが解析した結果を中間層にベクトルとして蓄積して、その情報がDecoderの出力生成に利用される。</p>
+<p>課題：一問一答しかできない。</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%91%EF%BD%85%EF%BD%8E%EF%BD%83%EF%BD%8F%EF%BD%84%EF%BD%85%EF%BD%92-%EF%BD%92%EF%BD%8E%EF%BD%8E">５－１．Ｅｎｃｏｄｅｒ　ＲＮＮ</h2>
+<p>ユーザーがインプットしたテキストデータを、単語等のトークンに区切って渡す構造になっている。文の意味をベクトルデータとして集約する。</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%92%EF%BD%84%EF%BD%85%EF%BD%83%EF%BD%8F%EF%BD%84%EF%BD%85%EF%BD%92-%EF%BD%92%EF%BD%8E%EF%BD%8E">５－２．ＤＥｃｏｄｅｒ　ＲＮＮ</h2>
+<p>システムがアウトプットデータを、単語等のトークンごとに生成する構造になっている。蓄積した情報から別の文脈を生成する。</p>
+<p>※確認テスト：</p>
+<p>Ｓｅｑ２ＳｅｑはEncoder-Decoderモデルの一種を指します。機械対話や、機械翻訳などに使用されている。</p>
+<p>演習チャレンジ：</p>
+<p>def encode(words, E, W, U, b):</p>
+<p>hidden_size = W.shape[0]</p>
+<p>h = np.zeros(hidden_size)</p>
+<p>for w inwords:</p>
+<p>e = E.dot(W)</p>
+<p>h = _activation(W.dot€ + U.dot(h) + b)</p>
+<p>return h</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%93%EF%BD%88%EF%BD%92%EF%BD%85%EF%BD%84">５－３．ＨＲＥＤ</h2>
+<p>前の単語の流れに即して応答されるため、より人間らしい文章が生成される。</p>
+<p>Ｓｅｑ２ＳｅｑにContext ＲＮＮを追加した構造によって、過去の発話履歴を加味した返答ができる。</p>
+<p>課題：回答が短く情報量の乏しいものになりがちである。</p>
+<p>※Context ＲＮＮ：Encoderのまとめて各文章の系列をまとめて、これまでの会話コンテキスト全体を表すベクトルに変換する構造になっている（文章の時系列を予測する）。</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%94%EF%BD%96%EF%BD%88%EF%BD%92%EF%BD%85%EF%BD%84">５－４．ＶＨＲＥＤ</h2>
+<p>ＨＲＥＤにＶＡＥの潜在変数の概念を追加することによって、ＨＲＥＤの課題を解決している。</p>
+<p>※確認テスト：</p>
+<p>・Ｓｅｑ２Ｓｅｑは一文の一問一答の回答を返すが、ＨＲＥＤはさらに文脈の意味ベクトル解釈に加えることで文脈の意味組み取った文の変換を出るようにした。</p>
+<p>・ＨＲＥＤが当たり障りのない回答しか返さないが、ＶＨＲＥＤはＶＡＥの考えを取り入れて短い単語以上の回答を返せるようにした。</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%95%EF%BD%96%EF%BD%81%EF%BD%85">５－５．ＶＡＥ</h2>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%91%E3%82%AA%E3%83%BC%E3%83%88%E3%82%A8%E3%83%B3%E3%82%B3%E3%83%BC%E3%83%80%E3%83%BC%E8%87%AA%E5%B7%B1%E7%AC%A6%E5%8F%B7%E5%8C%96%E5%99%A8autoencoder">５－５－１．オートエンコーダー（自己符号化器：Autoencoder）</h2>
+<p>教師なし学習の一つ。</p>
+<p>入力されたデータを一度圧縮し、重要な特徴量だけを残した後、再度もとの次元に復元する。</p>
+<p>入力データから潜在変数zに変換する（何かしら潜在変数zにデータを押し込める）ニューラルネットワークをEncoderといい、逆に潜在変数を入力としてもとの次元に復元するニューラルネットワークをDecoderという。</p>
+<p>次元削減（特徴抽出）が行える。</p>
+<p>事前学習（ニューラルネットワークの初期値に、オートエンコーダで学習させたものを用いる）を行うことで、勾配消失による学習速度低下を防止する。</p>
+<p>オートエンコーダによりデータを粗な状態にすることで、過学習を防止する。</p>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%92%EF%BD%96%EF%BD%81%EF%BD%85variational-autoencoder">５－５－２．ＶＡＥ（Variational Autoencoder）</h2>
+<p>潜在変数zに確率分布z-N(0,1)を仮定したもの。</p>
+<p>正規分布に従う乱数を学習時に取り入れているので、教師データのない教師なし学習にもかかわらず同じクラスラベルのデータが近いところに集まる。</p>
+<p>※確認テスト：自己符号化器の潜在変数に確率分布を導入したもの。</p>
+<h1 id="%EF%BC%96%EF%BD%97%EF%BD%8F%EF%BD%92%EF%BD%84%EF%BC%92%EF%BD%96%EF%BD%85%EF%BD%83">６．Ｗｏｒｄ２ｖｅｃ</h1>
+<h2 id="%EF%BC%96%EF%BC%8D%EF%BC%91%EF%BD%97%EF%BD%8F%EF%BD%92%EF%BD%84%EF%BC%92%EF%BD%96%EF%BD%85%EF%BD%83">６－１．Ｗｏｒｄ２ｖｅｃ</h2>
+<p>学習データからボキャブラリを作成する。可変長の単語を取り扱うことができる。</p>
+<p>One-hotベクトルでは1単語に1次元を割り当てるので、ボキャブラリ数が増えると非常に高次元になる。単語分散表現（単語ベクトル）は、単語を低次元の実数値ベクトルで表すので、単語間の類似度を計算することができる。</p>
+<h1 id="%EF%BC%97%EF%BD%81%EF%BD%94%EF%BD%94%EF%BD%85%EF%BD%8E%EF%BD%94%EF%BD%89%EF%BD%8F%EF%BD%8E-%EF%BD%8D%EF%BD%85%EF%BD%83%EF%BD%88%EF%BD%81%EF%BD%8E%EF%BD%89%EF%BD%93%EF%BD%8D">７．Ａｔｔｅｎｔｉｏｎ　Ｍｅｃｈａｎｉｓｍ</h1>
+<h2 id="%EF%BC%97%EF%BC%8D%EF%BC%91%EF%BD%81%EF%BD%94%EF%BD%94%EF%BD%85%EF%BD%8E%EF%BD%94%EF%BD%89%EF%BD%8F%EF%BD%8E-%EF%BD%8D%EF%BD%85%EF%BD%83%EF%BD%88%EF%BD%81%EF%BD%8E%EF%BD%89%EF%BD%93%EF%BD%8D">７－１．Ａｔｔｅｎｔｉｏｎ　Ｍｅｃｈａｎｉｓｍ</h2>
+<p>「入力と出力のどの単語が関連しているのか」の関連度を学習する仕組みです。</p>
+<p>長い文章のシーケンスの内部表現の次元を抑えて学習の精度を上げます。</p>
+<p>歴史的には、ＲＮＮのモデルに対して組み込まれて、大きな注目を集めた。近年では、機械翻訳のために提案された Transformerとそれをベースにした BERTなどの高度なモデルで全面的に使用され、様々な自然言語処理のタスクで最高精度を更新し続けています。</p>
+<p>※確認テスト：</p>
+<p>ＲＮＮ：時系列を処理するのに適したニューラルネットワーク</p>
+<p>Ｗｏｒｄ２ｖｅｃ：単語の分散表現ベクトルを得る手法</p>
+<p>Ｓｅｑ２Ｓｅｑ：一つの時系列データから別の時系列データ得るネットワーク</p>
+<p>Ａｔｔｅｎｔｉｏｎ：時系列データの中身にたいして関連性に重みを付ける手法</p>
+<p>演習チャレンジ：</p>
+<p>def traverse(node):</p>
+<p>if not isinstace(node, dict):</p>
+<p>v = node</p>
+<p>else:</p>
+<p>left = traverse(node['left'])</p>
+<p>right = traverse(node['right'])</p>
+<p>v = _activation(W.dot(np.concatenate([left, right]))</p>
+<p>return v</p>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92day%EF%BC%94">深層学習day４</h1>
+<h1 id="%EF%BC%91%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92">１．強化学習</h1>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%A8%E3%81%AF">１－１．強化学習とは</h2>
+<p>長期的に報酬を最大化できるように環境のなかで行動を選択できるエージェントを作ることを目標とする機械学習の一分野です。</p>
+<p><strong>行動の結果</strong> として与えられる利益(報酬)をもとに、 <strong>行動を決定する</strong> 原理を改善していく仕組みです。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E5%BF%9C%E7%94%A8%E4%BE%8B">１－２．強化学習の応用例</h2>
+<p>販売促進部（環境）において、キャンペーンをする（行動）によって、売上（正の報酬）とコスト（負の報酬）受け取り、報酬がプラスに大きくなるように、キャンペーンの内容（方策）を試行錯誤しながら（観測：知識を得て経験とする）、最適なキャンペーン内容を見つける。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%93%E6%8E%A2%E7%B4%A2%E3%81%A8%E5%88%A9%E7%94%A8%E3%81%AE%E3%83%88%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AA%E3%83%95">１－３．探索と利用のトレードオフ</h2>
+<p>環境について <strong>事前に完璧な知識があれば</strong> 、最適な行動を予測し決定することは可能であるので、どのような顧客にキャンペーンメールを送信すると、どのような行動を行うのかが既知である状況といえる。</p>
+<p>強化学習の場合、上記仮定は成り立たないとする。 <strong>不完全な知識を元に行動</strong> しながら、データを収集。 <strong>最適な行動</strong> を見つけていく。</p>
+<p>探索が足りない状態（過去のデータだけで、ベストとされる行動のみを常に取り続ければ、他にもっとベストな行動を見つけることはできない）</p>
+<p>⇕トレードオフの関係性</p>
+<p>利用が足りない状態（未知の行動のみを常に取り続ければ、過去の経験が活かせない）</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%94%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8">１－４．強化学習のイメージ</h2>
+<p>強化学習の学習の対象</p>
+<ul>
+<li>方策：方策関数</li>
+<li>価値：行動価値関数（行動関数、価値関数）</li>
+</ul>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%95%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E5%B7%AE%E5%88%86">１－５．強化学習の差分</h2>
+<p>強化学習と通常の教師あり、教師なし学習との違い</p>
+<p>結論:目標が違う</p>
+<ul>
+<li>
+<p>教師なし、あり学習では、データに含まれる <strong>パターンを見つけ</strong> 出すおよびその <strong>データから予測する</strong> ことが目標である。</p>
+</li>
+<li>
+<p>強化学習では、 <strong>優れた方策</strong> を見つけることが目標である。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%96%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AE%E6%AD%B4%E5%8F%B2">１－６．強化学習の歴史</h2>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%91%E5%BC%B7%E5%8C%96%E5%AD%A6%E7%BF%92%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">１－６－１．強化学習について</h2>
+<ul>
+<li>
+<p>冬の時代があったが、 <strong>計算速度の進展</strong> により大規模な状態をもつ場合の、強化学習を可能としつつある。</p>
+</li>
+<li>
+<p>関数近似法と、Q学習を組み合わせる手法の登場</p>
+</li>
+</ul>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%92%EF%BD%91%E5%AD%A6%E7%BF%92">１－６－２．Ｑ学習</h2>
+<ul>
+<li>行動価値関数を、行動する毎に更新することにより学習を進める方法です。</li>
+</ul>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%93%E9%96%A2%E6%95%B0%E8%BF%91%E4%BC%BC%E6%B3%95">１－６－３．関数近似法</h2>
+<ul>
+<li>価値関数や方策関数を関数近似する手法のことです。</li>
+</ul>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%96%E4%BE%A1%E5%80%A4%E9%96%A2%E6%95%B0">１－６．価値関数</h2>
+<p>価値関数とは</p>
+<ul>
+<li>価値を表す関数としては、状態価値関数と行動価値関数の2種類がある。</li>
+</ul>
+<p>ある <strong>状態の価値</strong> に注目する場合は、状態価値関数（環境の状態だけが価値を決める対象になっている：V(s)）</p>
+<p><strong>状態と価値を組み合わせた価値</strong> に注目する場合は、行動価値関数（状態と行動の２つの情報をもとに価値を決める:Q(s,a)）</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%97%E6%96%B9%E7%AD%96%E9%96%A2%E6%95%B0">１－７．方策関数</h2>
+<p>方策関数とは、方策ベースの強化学習手法において、ある状態でどのような行動を採るのかの確率を与える関数のことです。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%98%E6%96%B9%E7%AD%96%E5%8B%BE%E9%85%8D%E6%B3%95">１－８．方策勾配法</h2>
+<p>方策勾配法：方策をモデル化して最適化する手法である（方策反復法）</p>
+<p>定義方法</p>
+<ul>
+<li>
+<p>平均報酬</p>
+</li>
+<li>
+<p>割引報酬和</p>
+</li>
+</ul>
+<p>上記の定義に対応して、行動価値関数:Q(s,a)の定義を行い。</p>
+<p>方策勾配定理が成り立つ。</p>
+<h1 id="%EF%BC%92%EF%BD%81%EF%BD%8C%EF%BD%90%EF%BD%88%EF%BD%81%EF%BD%87%EF%BD%8F">２．ＡｌｐｈａＧｏ</h1>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%91%EF%BD%81%EF%BD%8C%EF%BD%90%EF%BD%88%EF%BD%81%EF%BD%87%EF%BD%8F">２－１．ＡｌｐｈａＧｏ</h2>
+<p>ＡｌｐｈａＧｏ Ｌｅｅ</p>
+<ul>
+<li>
+<p>PolicyNet：方策関数、畳み込みニューラルネットワークであり、19×19で48チャネルの入力データから、19×19マスの着手予想確率が出力される。</p>
+</li>
+<li>
+<p>ValueNet：価値関数、畳み込みニューラルネットワークあり、19×19で49チャネル(「手番」が追加)の入力データから、勝率（-1～1）が出力される。</p>
+</li>
+<li>
+<p>教師あり学習（過去の人間の対局を学習する）のあと、強化学習を行う。</p>
+</li>
+<li>
+<p>RollOutPolicy：線形の方策関数であり、探索中に高速に着手確率を出すために使用される。</p>
+</li>
+<li>
+<p>RollOutPolicy用いたモンテカルロ木探索で、強化学習を行う。</p>
+</li>
+</ul>
+<p>ＡｌｐｈａＧｏ Ｚｅｒｏ</p>
+<ul>
+<li>
+<p>教師あり学習を行わない。</p>
+</li>
+<li>
+<p>特徴入力からヒューリスティックな要素を排除し、石の配置のみにした。</p>
+</li>
+<li>
+<p>PolicyNetとValueNetを１つのネットワークに統合した。</p>
+</li>
+<li>
+<p>ResidualNetを導入した。</p>
+</li>
+<li>
+<p>モンテカルロ木探索からRollOutシミュレーションをなくした。</p>
+</li>
+</ul>
+<p>※ ResidualNet：ショートカットのある基本層の39層からなる。</p>
+<p>ＡｌｐｈａＧｏ Ｚｅｒｏでの工夫</p>
+<ul>
+<li>
+<p>Bottleneck：</p>
+</li>
+<li>
+<p>PreActivation：</p>
+</li>
+<li>
+<p>WideResNet：</p>
+</li>
+<li>
+<p>pyramidNet：</p>
+</li>
+</ul>
+<p>ＡｌｐｈａＧｏ Ｚｅｒｏの学習法</p>
+<ul>
+<li>
+<p>自己対局による教師データの作成</p>
+</li>
+<li>
+<p>教師データによる学習</p>
+</li>
+<li>
+<p>ネットワークの更新</p>
+</li>
+</ul>
+<h1 id="%EF%BC%93%E8%BB%BD%E9%87%8F%E5%8C%96%E3%83%BB%E9%AB%98%E9%80%9F%E5%8C%96%E6%8A%80%E8%A1%93">３．軽量化・高速化技術</h1>
+<p>※分散深層学習とは</p>
+<ul>
+<li>
+<p>深層学習は多くのデータを使用したり、パラメータ調整のために多くの時間を使用したりするため、高速な計算が求められる。（データが増えている）</p>
+</li>
+<li>
+<p>複数の計算資源(ワーカー)を使用し、並列的にニューラルネットを構成することで、効率の良い学習を行いたい。（コンピュータ１台の性能向上がモデルに追いつかない）</p>
+</li>
+<li>
+<p>データ並列化、モデル並列化、GPUによる高速技術は不可欠である。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%91%E3%83%A2%E3%83%87%E3%83%AB%E4%B8%A6%E5%88%97">３－１．モデル並列</h2>
+<ul>
+<li>
+<p>親モデルを各ワーカーに分割し、それぞれのモデルを学習させる。</p>
+</li>
+<li>
+<p>全てのデータで学習が終わった後で、一つのモデルに復元する。</p>
+</li>
+<li>
+<p>モデルが大きい時はモデル並列化を、データが大きい時はデータ並列化をすると良い。</p>
+</li>
+</ul>
+<p>※モデル並列化の効果</p>
+<ul>
+<li>モデルのパラメータ数が多い（大きいモデル）ほど、スピードアップの効率も向上する。</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92%E3%83%87%E3%83%BC%E3%82%BF%E4%B8%A6%E5%88%97">３－２．データ並列</h2>
+<ul>
+<li>
+<p>親モデルを各ワーカーに子モデルとしてコピーする。</p>
+</li>
+<li>
+<p>データを分割し、各ワーカーごとに計算させる。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91%E3%83%87%E3%83%BC%E3%82%BF%E4%B8%A6%E5%88%97%E5%8C%96-%E5%90%8C%E6%9C%9F%E5%9E%8B">３－２－１．データ並列化: 同期型</h2>
+<ul>
+<li>データ並列化は各モデルのパラメータの合わせ方で、同期型か非同期型か決まる。</li>
+</ul>
+<p>※同期型のパラメータ更新の流れ。</p>
+<ul>
+<li>
+<p>各ワーカーの計算が終わるのを待つ。</p>
+</li>
+<li>
+<p>全ワーカーの勾配が出たところで勾配の平均を計算する。</p>
+</li>
+<li>
+<p>親モデルのパラメータを更新する。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%92%E3%83%87%E3%83%BC%E3%82%BF%E4%B8%A6%E5%88%97%E5%8C%96-%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%9E%8B">３－２－２．データ並列化: 非同期型</h2>
+<p>※非同期型のパラメータ更新の流れ。</p>
+<ul>
+<li>
+<p>各ワーカーはお互いの計算を待たず、各子モデルごとに更新を行う。</p>
+</li>
+<li>
+<p>学習が終わった子モデルはパラメータサーバにPushされる。</p>
+</li>
+<li>
+<p>新たに学習を始める時は、パラメータサーバからPopしたモデルに対して学習していく。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%E5%90%8C%E6%9C%9F%E5%9E%8B%E3%81%A8%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%9E%8B%E3%81%AE%E6%AF%94%E8%BC%83">３－２－３．同期型と非同期型の比較</h2>
+<ul>
+<li>
+<p>処理のスピードは、お互いのワーカーの計算を待たない <strong>非同期型の方が早い</strong> 。</p>
+</li>
+<li>
+<p>非同期型は最新のモデルのパラメータを利用できないので、学習が不安定になりやすい。</p>
+<p>-&amp;gt; Stale Gradient Problem</p>
+</li>
+<li>
+<p>現在は <strong>同期型の方が精度が良いことが多い</strong> ので、主流となっている。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BD%87%EF%BD%90%EF%BD%95">３－３．ＧＰＵ</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91gpgpu-general-purpose-on-gpu">３－３－１．GPGPU (General-purpose on GPU)</h2>
+<ul>
+<li>元々の使用目的であるグラフィック以外の用途で使用されるGPUの総称</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BD%83%EF%BD%90%EF%BD%95">３－３－２．ＣＰＵ</h2>
+<ul>
+<li>
+<p>高性能なコアが少数</p>
+</li>
+<li>
+<p>複雑で連続的な処理が得意</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BD%87%EF%BD%90%EF%BD%95">３－３－３．ＧＰＵ</h2>
+<ul>
+<li>
+<p>比較的低性能なコアが多数</p>
+</li>
+<li>
+<p>簡単な並列処理が得意</p>
+</li>
+<li>
+<p>ニューラルネットの学習は単純な行列演算が多いので、高速化が可能</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%94gpgpu%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83">３－３－４．GPGPU開発環境</h2>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%94%E2%80%95%EF%BC%91cuda">３－３－４―１．CUDA</h3>
+<ul>
+<li>
+<p>GPU上で並列コンピューティングを行うためのプラットフォームである。</p>
+</li>
+<li>
+<p>NVIDIA社が開発しているGPUのみで使用可能である。</p>
+</li>
+<li>
+<p>Deep Learning用に提供されているので、使いやすい。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%92opencl">３－３－４－２．OpenCL</h3>
+<ul>
+<li>
+<p>オープンな並列コンピューティングのプラットフォーム</p>
+</li>
+<li>
+<p>NVIDIA社以外の会社(Intel, AMD, ARMなど)のGPUからでも使用可能である。</p>
+</li>
+<li>
+<p>Deep Learning用の計算に特化しているわけではない。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%93deep-learning%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF">３－３－４－３．Deep Learningフレームワーク</h3>
+<ul>
+<li>フレームワーク(Tensorflow, Pytorch)内でＧＰＵを使用したモデルが実装されているので、使用する際は指定すれば良い。</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%94%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E8%BB%BD%E9%87%8F%E5%8C%96">３－４．モデルの軽量化</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%91%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E8%BB%BD%E9%87%8F%E5%8C%96%E3%81%A8%E3%81%AF">３－４－１．モデルの軽量化とは</h2>
+<ul>
+<li>
+<p>モデルの精度を維持しつつパラメータや演算回数を低減する手法の総称である。</p>
+</li>
+<li>
+<p>高メモリ負荷、高い演算性能が求められる</p>
+</li>
+<li>
+<p>通常は低メモリ低演算性能での利用が必要とされるIotなど</p>
+</li>
+</ul>
+<p>参照論文：山本康平橘素子前野蔵人ディープラーニングのモデル軽量化技術https://www.oki.com/jp/otr/2019/n233/pdf/otr233_r11.pdf</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%92%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E8%BB%BD%E9%87%8F%E5%8C%96%E3%81%AE%E5%88%A9%E7%94%A8">３－４－２．モデルの軽量化の利用</h2>
+<ul>
+<li>
+<p>モデルの軽量化はモバイル, IoT 機器において有用な手法である。</p>
+</li>
+<li>
+<p>モバイル端末やIoT はパソコンに比べ性能が大きく劣る。</p>
+</li>
+<li>
+<p>主に計算速度と搭載されているメモリ</p>
+</li>
+<li>
+<p>モデルの軽量化は計算の高速化と省メモリ化を行うためモバイル,IoT 機器と相性が良い手法になる。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%93%E8%BB%BD%E9%87%8F%E5%8C%96%E3%81%AE%E6%89%8B%E6%B3%95">３－４－３．軽量化の手法</h2>
+<p>代表的な手法として下記の3 つがある</p>
+<ul>
+<li>
+<p>量子化</p>
+</li>
+<li>
+<p>蒸留</p>
+</li>
+<li>
+<p>プルーニング</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%E9%87%8F%E5%AD%90%E5%8C%96quantization">３－５．量子化(Quantization)</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%91%E9%87%8F%E5%AD%90%E5%8C%96quantization%E3%81%A8%E3%81%AF">３－５－１．量子化(Quantization)とは</h2>
+<ul>
+<li>
+<p>ネットワークが大きくなると大量のパラメータが必要となり、学習や推論に多くのメモリと演算処理が必要となる。</p>
+</li>
+<li>
+<p>通常のパラメータの64 bit 浮動小数点を32 bit など下位の精度に落とすことでメモリと演算処理の削減を行う。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%92%E9%87%8F%E5%AD%90%E5%8C%96%E3%81%AE%E5%88%A9%E7%82%B9%E3%81%A8%E6%AC%A0%E7%82%B9">３－５－２．量子化の利点と欠点</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91%E5%88%A9%E7%82%B9">３－５－２－１．利点</h2>
+<ul>
+<li>
+<p>計算の高速化</p>
+</li>
+<li>
+<p>省メモリ化</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%92%E6%AC%A0%E7%82%B9">３－５－２－２．欠点</h2>
+<ul>
+<li>精度の低下</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%93%E8%A8%88%E7%AE%97%E3%81%AE%E9%AB%98%E9%80%9F%E5%8C%96">３－５－３．計算の高速化</h2>
+<ul>
+<li>倍精度演算(64 bit)と単精度演算(32 bit)は演算性能が大きく違うため、量子化により精度を落とすことにより、より多くの計算をすることができる。</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%94%E7%9C%81%E3%83%A1%E3%83%A2%E3%83%AA%E5%8C%96">３－５－４．省メモリ化</h2>
+<ul>
+<li>ニューロンの重みを浮動小数点のbit数を少なくして有効桁数を下げることでニューロンのメモリサイズを小さくすることができ、多くのメモリを消費するモデルのメモリ使用量を抑えることができる。</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%95%E7%B2%BE%E5%BA%A6%E3%81%AE%E4%BD%8E%E4%B8%8B">３－５－５．精度の低下</h2>
+<p>先に述べたようにニューロンが表現できる小数の有効桁が小さくなる。</p>
+<p>↓</p>
+<p>モデルの表現力が低下する。</p>
+<p>↓</p>
+<p>学習した結果ニューロンが、小数の有効桁未満の値になる場合など重みを表現できなくなる。</p>
+<p>↓</p>
+<p>ただし、実際の問題では倍精度を単精度にしてもほぼ精度は変わらない。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%96%E6%A5%B5%E7%AB%AF%E3%81%AA%E9%87%8F%E5%AD%90%E5%8C%96">３－５－６．極端な量子化</h2>
+<p>極端な量子化を考える。表現できる値が0,1 の1 bitの場合、</p>
+<p>a = 0.1 が真値の時、関数y(x) = axを近似する場合を考える際、学習によってa が0.1 を得る必要があるしかし、量子化によってa が表現できる値が0,1 のため求められる式は、</p>
+<p>y(x) = 0, y(x) =x</p>
+<p>のようになり、誤差の大きな式になってしまう。</p>
+<p>量子化する際は極端に精度が落ちない程度に量子化をしなければならない。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%97%E9%87%8F%E5%AD%90%E5%8C%96%E3%81%AE%E5%AE%9F%E9%A8%93%E7%B5%90%E6%9E%9C">３－５－７．量子化の実験結果</h2>
+<p>下記の論文を参照する。</p>
+<p>PenghangYin , Shuai Zhang , YingyongQi , and Jack Xin（2017）「Quantization and Training of Low Bit-Width Convolutional Neural Networks for Object Detection」</p>
+<p><a href="https://arxiv.org/pdf/1612.06052.pdf">https://arxiv.org/pdf/1612.06052.pdf</a></p>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%E9%80%9F%E5%BA%A6%E3%81%AE%E5%AE%9F%E9%A8%93%E7%B5%90%E6%9E%9C">３－５－７－１．速度の実験結果</h3>
+<p>下記の表は、32bitと6bitのモデルで検出を行った実験の検出時間である。</p>
+<table>
+<thead>
+<tr>
+<th>32 bit</th>
+<th>6 bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.507s</td>
+<td>0.098s</td>
+</tr>
+<tr>
+<td>0.441s</td>
+<td>0.106s</td>
+</tr>
+<tr>
+<td>32.269s</td>
+<td>6.113s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%92%E7%B2%BE%E5%BA%A6%E3%81%AE%E5%AE%9F%E9%A8%93%E7%B5%90%E6%9E%9C">３－５－７－２．精度の実験結果</h3>
+<p>下記の図は量子化を行わない場合と量子化を行った際の精度になる。</p>
+<table>
+<thead>
+<tr>
+<th>R-FCN, ResNet-50</th>
+<th>mAP</th>
+<th>R-FCN, ResNet-101</th>
+<th>mAP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-bit LBW</td>
+<td>74:37%</td>
+<td>4-bit LBW</td>
+<td>76:79%</td>
+</tr>
+<tr>
+<td>5-bit LBW</td>
+<td>76:99%</td>
+<td>5-bit LBW</td>
+<td>77:83%</td>
+</tr>
+<tr>
+<td>6-bit LBW</td>
+<td>77:05%</td>
+<td>6-bit LBW</td>
+<td>78:24%</td>
+</tr>
+<tr>
+<td>32-bit full-precision</td>
+<td>77:46%</td>
+<td>32-bit full-precision</td>
+<td>78:94%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%96%E8%92%B8%E7%95%99distillation">３－６．蒸留(Distillation)</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%91%E8%92%B8%E7%95%99%E3%81%A8%E3%81%AF">３－６－１．蒸留とは</h2>
+<p><strong>精度の高い</strong> モデルはニューロンの <strong>規模が大きなモデル</strong> になっている。そのため、推論に多くのメモリと演算処理が必要です。</p>
+<p>↓</p>
+<p>規模の大きなモデルの知識を使い、 <strong>軽量なモデルの作成</strong> を行う。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%92%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E7%B0%A1%E7%B4%84%E5%8C%96">３－６－２．モデルの簡約化</h2>
+<p>学習済みの精度の高いモデルの知識を軽量なモデルへ <strong>継承</strong> させる。</p>
+<p>知識の継承により、軽量でありながら複雑なモデルに匹敵する精度のモデルを得ることが期待できる。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%93%E6%95%99%E5%B8%AB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E7%94%9F%E5%BE%92%E3%83%A2%E3%83%87%E3%83%AB">３－６－３．教師モデルと生徒モデル</h2>
+<p>蒸留は教師モデルと生徒モデルの2つで構成される</p>
+<p>教師モデル：予測精度の高い、複雑なモデルやアンサンブルされたモデル（大きく精度が高い）</p>
+<p>生徒モデル：教師モデルをもとに作られる軽量なモデル</p>
+<h3 id="%EF%BC%93%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%E6%95%99%E5%B8%AB%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E7%94%9F%E5%BE%92%E3%83%A2%E3%83%87%E3%83%AB">３－６－３－１．教師モデルと生徒モデル</h3>
+<ul>
+<li>
+<p>教師モデルの重みを固定し、生徒モデルの重みを更新していく。</p>
+</li>
+<li>
+<p>誤差は教師モデルと生徒モデルのそれぞれの誤差を使い重みを更新していく。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%94%E8%92%B8%E7%95%99%E3%81%AE%E5%88%A9%E7%82%B9">３－６－４．蒸留の利点</h2>
+<p>Cifar 10 データセットで学習を行ったレイヤー数と精度のグラフが参考論文に掲載されている。</p>
+<p>表のback propagation は通常の学習、Knowledge Distillation は先に説明した蒸留手法、Hint Taraing は蒸留は引用論文で提案された蒸留手法が比較されてあり、この図から蒸留によって少ない学習回数でより精度の良いモデルを作成することができている。</p>
+<p>参照論文：https://arxiv.org/pdf/1412.6550.pdf</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%E3%83%97%E3%83%AB%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0pruning">３－７．プルーニング（Pruning）</h2>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%E3%83%97%E3%83%AB%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%A8%E3%81%AF">３－７－１．プルーニングとは</h2>
+<p>ネットワークが大きくなると大量のパラメータになるが、すべてのニューロンの計算が精度に寄与しているわけではない。</p>
+<p>↓</p>
+<p>モデルの精度に <strong>寄与が少ないニューロンを削減</strong> することでモデルの軽量化、高速化が見込まれる。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%92%E8%A8%88%E7%AE%97%E3%81%AE%E9%AB%98%E9%80%9F%E5%8C%96">３－７－２．計算の高速化</h2>
+<ul>
+<li>寄与の少ないニューロンの削減を行いモデルの圧縮を行うことで高速に計算を行うことができる。</li>
+</ul>
+<p>参照論文：https://arxiv.org/pdf/1506.02626.pdf</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%93%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%AD%E3%83%B3%E3%81%AE%E5%89%8A%E6%B8%9B">３－７－３．ニューロンの削減</h2>
+<ul>
+<li>ニューロンの削減の手法は、「重みが閾値以下の場合、ニューロンを削減」し、再学習を行う。</li>
+</ul>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%94%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%AD%E3%83%B3%E6%95%B0%E3%81%A8%E7%B2%BE%E5%BA%A6">３－７－４．ニューロン数と精度</h2>
+<ul>
+<li>閾値を高くするとニューロンは大きく削減できるが精度も減少する。</li>
+</ul>
+<p>参照論文：https://db-event.jpn.org/deim2017/papers/62.pdf</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%95%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AE%E8%BB%BD%E9%87%8F%E5%8C%96%E3%81%BE%E3%81%A8%E3%82%81">３－７－５．モデルの軽量化まとめ</h2>
+<p>量子化：重みの精度を下げることにより計算の高速化と省メモリ化を行う技術。</p>
+<p>蒸留：複雑で精度の良い教師モデルから軽量な生徒モデルを効率よく学習を行う技術。</p>
+<p>プルーニング：寄与の少ないニューロンをモデルから削減し高速化と省メモリ化を行う技術。</p>
+<h1 id="%EF%BC%94%E5%BF%9C%E7%94%A8%E6%8A%80%E8%A1%93">４．応用技術</h1>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BD%8D%EF%BD%8F%EF%BD%82%EF%BD%89%EF%BD%8C%EF%BD%85%EF%BD%8E%EF%BD%85%EF%BD%94">４－１．Ｍｏｂｉｌｅｎｅｔ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91%E8%AB%96%E6%96%87%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">４－１－１．論文タイトル</h2>
+<ul>
+<li>MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92%E6%8F%90%E6%A1%88%E6%89%8B%E6%B3%95">４－１－２．提案手法</h2>
+<ul>
+<li>
+<p>ディープラーニングモデルは精度は良いが、その分ネットワークが深くなり計算量が増える。</p>
+</li>
+<li>
+<p>計算量が増えると、多くの計算リソースが必要で、お金がかかってしまう。</p>
+</li>
+<li>
+<p>ディープラーニングモデルの軽量化・高速化・高精度化を実現した。画像認識の軽量化モデルである。(その名の通りモバイルなネットワーク)</p>
+</li>
+<li>
+<p>https://qiita.com/HiromuMasuda0228/items/7dd0b764804d2aa199e4</p>
+</li>
+<li>
+<p>近年の画像認識タスクに用いられる最新のニューラルネットワークアーキテクチャは、多くのモバイルおよび組み込みアプリケーションの実行環境を上回る高い計算資源を必要とされる。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93%E4%B8%80%E8%88%AC%E7%9A%84%E3%81%AA%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%AC%E3%82%A4%E3%83%A4%E3%83%BC%E6%AF%94%E8%BC%83%E7%94%A8">４－１－３．一般的な畳み込みレイヤー（比較用）</h2>
+<ul>
+<li>
+<p>入力特徴マップ(チャネル数)：Ｈ×Ｗ×C</p>
+</li>
+<li>
+<p>畳込みカーネルのサイズ：Ｋ×Ｋ×Ｃ</p>
+</li>
+<li>
+<p>出力チャネル数(フィルタ数)：Ｍ</p>
+</li>
+<li>
+<p>ストライド１でパディングを適用した場合の畳み込み計算の計算量：Ｈ×Ｗ×Ｋ×Ｋ×Ｃ×Ｍ</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%94-mobilenets">４－１－４． MobileNets</h2>
+<ul>
+<li>
+<p>一般的な畳み込みレイヤーは計算量が多い</p>
+</li>
+<li>
+<p>MobileNetsはDepthwise ConvolutionとPointwise Convolutionの組み合わせで軽量化を実現</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%95depthwise-convolution">４－１－５．Depthwise Convolution</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%91%E4%BB%95%E7%B5%84%E3%81%BF">４－１－５－１．仕組み</h3>
+<ul>
+<li>
+<p>入力マップのチャネルごとに畳み込みを実施する。（M＝１）</p>
+</li>
+<li>
+<p>出力マップをそれらと結合(入力マップのチャネル数と同じになる)</p>
+</li>
+<li>
+<p>通常の畳み込みカーネルは全ての層にかかっていることを考えると計算量が大幅に削減可能である。</p>
+</li>
+<li>
+<p>各層ごとの畳み込みなので層間の関係性は全く考慮されない。通常はPW畳み込みとセットで使うことで解決する。</p>
+</li>
+<li>
+<p>畳み込み計算の計算量：Ｈ×Ｗ×Ｃ×Ｋ×Ｋ</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%96pointwise-convolution">４－１－６．Pointwise Convolution</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%91%E4%BB%95%E7%B5%84%E3%81%BF">４－１－６－１．仕組み</h3>
+<ul>
+<li>
+<p>1 x 1 convとも呼ばれる(正確には1 x 1 x C、カーネルが１×１)</p>
+</li>
+<li>
+<p>入力マップのポイントごとに畳み込みを実施</p>
+</li>
+<li>
+<p>出力マップ(チャネル数)はフィルタ数分だけ作成可能(任意のサイズが指定可能)</p>
+</li>
+<li>
+<p>畳み込み計算の計算量：Ｈ×Ｗ×Ｃ×Ｍ</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%97mobilenet%E3%81%AE%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3">４－１－７．MobileNetのアーキテクチャ</h2>
+<ul>
+<li>
+<p>Depthwise Separable Convolutionという手法を用いて計算量を削減している。通常の畳込みが空間方向とチャネル方向の計算を同時に行うのに対して、Depthwise Separable ConvolutionではそれらをDepthwise ConvolutionとPointwise Convolutionと呼ばれる演算によって個別に行う。</p>
+</li>
+<li>
+<p>Depthwise Convolitionはチャネル毎に空間方向へ畳み込む。すなわち、チャネル毎にDK×DK×１のサイズのフィルターをそれぞれ用いて計算を行うため、その計算量は（Ｈ×Ｗ×Ｃ×Ｋ×Ｋ）となる。</p>
+</li>
+<li>
+<p>次にDepthwise Convolutionの出力をPointwise Convolutionによってチャネル方向に畳み込む。すなわち、出力チャネル毎に１×１×Mサイズのフィルターをそれぞれ用いて計算を行うため、その計算量は（Ｈ×Ｗ×Ｃ×Ｍ）となる。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BD%84%EF%BD%85%EF%BD%8E%EF%BD%93%EF%BD%85%EF%BD%8E%EF%BD%85%EF%BD%94">４－２．Ｄｅｎｓｅｎｅｔ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91%E8%AB%96%E6%96%87%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">４－２－１．論文タイトル</h2>
+<ul>
+<li>
+<p>Densely Connected Convolutional Networks. G. Huang et., al. 2016</p>
+</li>
+<li>
+<p><a href="https://arxiv.org/pdf/1608.06993.pdf">https://arxiv.org/pdf/1608.06993.pdf</a></p>
+</li>
+<li>
+<p><a href="https://www.slideshare.net/harmonylab/densely-connected-convolutional-networks">https://www.slideshare.net/harmonylab/densely-connected-convolutional-networks</a></p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%92%E6%A6%82%E8%A6%81">４－２－２．概要</h2>
+<ul>
+<li>
+<p>Dense Convolutional Network（以下、DenseNet）は、畳込みニューラルネットワーク（以下、CNN）アーキテクチャの一種である。ニューラルネットワークでは層が深くなるにつれて、学習が難しくなるという問題があったが、Residual Network（以下、ResNet）などのCNNアーキテクチャでは前方の層から後方の層へアイデンティティ接続を介してパスを作ることで問題を対処した。DenseBlockと呼ばれるモジュールを用いた、DenseNetもそのようなアーキテクチャの一つである。</p>
+</li>
+<li>
+<p>初期の畳み込み</p>
+</li>
+<li>
+<p>Denseブロック</p>
+</li>
+<li>
+<p>変換レイヤー</p>
+</li>
+<li>
+<p>判別レイヤー</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93dense%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF">４－２－３．Denseブロック</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%E5%87%BA%E5%8A%9B%E5%B1%A4%E3%81%AB%E5%89%8D%E3%81%AE%E5%B1%A4%E3%81%AE%E5%85%A5%E5%8A%9B%E3%82%92%E8%B6%B3%E3%81%97%E3%81%82%E3%82%8F%E3%81%9B%E3%82%8B">４－２－３－１．出力層に前の層の入力を足しあわせる。</h3>
+<ul>
+<li>層間の情報の伝達を最大にするために全ての同特徴量サイズの層を結合する</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%92%E7%89%B9%E5%BE%B4%E3%83%9E%E3%83%83%E3%83%97%E3%81%AE%E5%85%A5%E5%8A%9B%E3%81%AB%E5%AF%BE%E3%81%97%E4%B8%8B%E8%A8%98%E3%81%AE%E5%87%A6%E7%90%86%E3%81%A7%E5%87%BA%E5%8A%9B%E3%82%92%E8%A8%88%E7%AE%97%E3%81%99%E3%82%8B">４－２－３－２．特徴マップの入力に対し、下記の処理で出力を計算する。</h3>
+<ul>
+<li>
+<p>Batch正規化</p>
+</li>
+<li>
+<p>Relu関数による変換</p>
+</li>
+<li>
+<p>3 x 3畳み込み層による処理</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%93%E5%89%8D%E3%82%B9%E3%83%A9%E3%82%A4%E3%83%89%E3%81%A7%E8%A8%88%E7%AE%97%E3%81%97%E3%81%9F%E5%87%BA%E5%8A%9B%E3%81%AB%E5%85%A5%E5%8A%9B%E7%89%B9%E5%BE%B4%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%B6%B3%E3%81%97%E5%90%88%E3%82%8F%E3%81%9B%E3%82%8B">４－２－３－３．前スライドで計算した出力に入力特徴マップを足し合わせる。</h3>
+<ul>
+<li>入力特徴マップのチャンネル数がℓ x kだった場合、出力は(ℓ+1) x kとなる。</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%94%E7%AC%AC%E2%84%93%E5%B1%A4%E3%81%AE%E5%87%BA%E5%8A%9B%E3%82%92%E3%81%A8%E3%81%99%E3%82%8B%E3%81%A8-x%E2%84%93-%EF%BC%9D-h%E2%84%93x0x1%E3%83%BB%E3%83%BB%E3%83%BBx%E2%84%93-1">４－２－３－４．第ℓ層の出力をとすると　Xℓ　＝　Hℓ（[x0,x1,・・・,xℓ-1]）</h3>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%95k%E3%82%92%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E6%88%90%E9%95%B7%E7%8E%87growth-rate%E3%81%A8%E5%91%BC%E3%81%B6">４－２－３－５．kをネットワークの成長率（growth rate）と呼ぶ。</h3>
+<ul>
+<li>kが大きくなるほど、ネットワークが大きくなるため、小さな整数に設定するのがよい</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%94transition-layer">４－２－４．Transition Layer</h2>
+<ul>
+<li>CNNでは、中間層でチャネルサイズを変更し、特徴マップのサイズを変更し、ダウンサンプリングを行うため、Transition Layerと呼ばれる層でDence blockをつなぐ。</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%95densenet%E3%81%A8resnet%E3%81%AE%E9%81%95%E3%81%84">４－２－５．DenseNetとResNetの違い</h2>
+<ul>
+<li>
+<p>DenseBlockでは <strong>前方の各層</strong> からの出力全てが、後方の層への入力として用いられる。</p>
+</li>
+<li>
+<p>RessidualBlockでは <strong>前１層</strong> の入力のみ後方の層へ入力として用いられる。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%96%E6%88%90%E2%BB%91%E7%8E%87growth-rate">４－２－６．成⻑率(Growth Rate)</h2>
+<ul>
+<li>
+<p>DenseNet内で使用されるDenseBlockと呼ばれるモジュールでは成⻑率(Growth Rate)と呼ばれるハイパーパラメータが存在する。</p>
+</li>
+<li>
+<p>DenseBlock内の各ブロック毎にk個ずつ特徴マップのチャネル数が増加していく時、kを成⻑率と呼ぶ。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BD%8C%EF%BD%81%EF%BD%99%EF%BD%85%EF%BD%92%E6%AD%A3%E8%A6%8F%E5%8C%96%EF%BD%89%EF%BD%8E%EF%BD%93%EF%BD%94%EF%BD%81%EF%BD%8E%EF%BD%83%EF%BD%85">４－３．Ｌａｙｅｒ正規化/Ｉｎｓｔａｎｃｅ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BD%82%EF%BD%81%EF%BD%94%EF%BD%83%EF%BD%88%EF%BD%8E%EF%BD%8F%EF%BD%92%EF%BD%8D">４－３－１．Ｂａｔｃｈｎｏｒｍ</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91batchnorm%E3%81%AE%E6%A6%82%E8%A6%81">４－３－１－１．BatchNormの概要</h3>
+<ul>
+<li>
+<p>レイヤー間を流れるデータの分布を、 <strong>ミニバッチ単位</strong> で平均が0・分散が1になるように <strong>正規化</strong> する。</p>
+</li>
+<li>
+<p>Batch Normalizationはニューラルネットワークにおいて学習時間の短縮や初期値への依存低減、過学習の抑制など効果がある。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92%E3%81%AE%E5%95%8F%E9%A1%8C%E7%82%B9">４－３－１－２．の問題点</h3>
+<ul>
+<li>
+<p>Batch Sizeが小さい条件下では、学習が収束しないことがあり、代わりにLayer Normalizationなどの正規化手法が使われることが多い。</p>
+</li>
+<li>
+<p>Batch Sizeがマシン性能に依存するため、比較検討が難しい。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93batch-norm%E4%BB%A5%E5%A4%96%E3%81%AE%E6%AD%A3%E8%A6%8F%E5%8C%96%E3%81%A8%E3%81%AE%E6%AF%94%E8%BC%83">４－３－１－３．Batch Norm以外の正規化との比較</h3>
+<p>●Batch Norm</p>
+<p>○ミニバッチに含まれるsample（画像）の同一チャネルが同一分布に従うよう正規化</p>
+<p>●Layer Norm</p>
+<p>○それぞれのsample（画像）の全てのpixelsが同一分布に従うよう正規化</p>
+<p>●Instance Norm.</p>
+<p>○さらにchannelも同一分布に従うよう正規化</p>
+<p>論文参照:https://arxiv.org/pdf/1607.08022.pdf</p>
+<p>●Group Norm</p>
+<p>-1つのデータの任意のチャネル数に対して正規化 したもの。</p>
+<p>※あくまでもバッチサイズが小さい時にしかBatch Normよりも良い効果を発揮しないので、使用例は下記の通り。</p>
+<ul>
+<li>
+<p>Layer Norm: RNN系やTransformer</p>
+</li>
+<li>
+<p>Instance Norm: GAN系(StyleGAN)</p>
+</li>
+<li>
+<p>Group Norm: 画像認識系(参照論文：https://arxiv.org/pdf/1803.08494.pdf)</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%94batch-norm">４－３－１－４．Batch Norm.</h3>
+<p>●H x W x CのsampleがN個あった場合に、N個の同一チャネルが正規化の単位となる。</p>
+<p>○RGBの3チャネルのsampleがN個の場合は、それぞれのチャンネルの平均と分散を求め正規化を実施(図の⻘い部分に対応)。チャンネルごとに正規化された特徴マップを出力する。</p>
+<p>●ミニバッチのサイズを大きく取れない場合には、効果が薄くなってしまう。</p>
+<p>参照論文: Ioffe, S. et al. &quot;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&quot; (2015)</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BD%8C%EF%BD%81%EF%BD%99%EF%BD%85%EF%BD%92-%EF%BD%8E%EF%BD%8F%EF%BD%92%EF%BD%8D">４－３－２．Ｌａｙｅｒ ｎｏｒｍ</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91layer-norm">４－３－２－１．Layer Norm</h3>
+<ul>
+<li>
+<p>N個のsampleのうち一つに注目。H x W x Cの全てのpixelが正規化の単位。</p>
+</li>
+<li>
+<p>RGBの3チャネルのsampleがN個の場合は、あるsampleを取り出し、全てのチャネルの平均と分散を求め正規化を実施(図の⻘い部分に対応)。特徴マップごとに正規化された特徴マップを出力</p>
+</li>
+<li>
+<p><strong>ミニバッチの数に依存しない</strong> ので、上記の問題を解消できていると考えられる。</p>
+</li>
+<li>
+<p>参照論文: https://arxiv.org/pdf/1607.06450.pdf</p>
+</li>
+</ul>
+<p>●Layer Normは、入力データや重み行列に対して、以下の操作を施しても、出力が変わらないことが知られている。</p>
+<ul>
+<li>
+<p>入力データのスケールに関してロバスト</p>
+</li>
+<li>
+<p>重み行列のスケールやシフトに関してロバスト</p>
+</li>
+<li>
+<p>詳細は下記のスライド参照</p>
+</li>
+</ul>
+<p>※https://www.slideshare.net/KeigoNishida/layer-normalizationnips</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%93instance-norm">４－３－３．Instance Norm</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91instance-norm">４－３－２－１．Instance Norm</h3>
+<ul>
+<li>
+<p>各sampleのchannelごとに正規化する。</p>
+</li>
+<li>
+<p>コントラストの正規化に寄与・画像のスタイル転送やテクスチャ合成タスクなどで利用される。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%94%EF%BD%97%EF%BD%81%EF%BD%96%EF%BD%85%EF%BD%8E%EF%BD%85%EF%BD%94">４－４．Ｗａｖｅｎｅｔ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%94%EF%BC%8D%EF%BC%91wavenet">４－４－１．Wavenet</h2>
+<ul>
+<li>
+<p>「AlphaGo」を作った、Google傘下のDeepMindが開発した、生の音声波形を生成する深層学習モデルである。2016年にモデルが発表され、2017年に実用化段階にいたった。最初のリリース時点（2016年）ではWaveNetは非常に計算コストが高かった。その後、新しく改良され2017年には、実時間に比べて20倍の速さで音声を生成するようになった。</p>
+</li>
+<li>
+<p>Ｐｉｘｅｌ　ＣＮＮ（高解像度の画像を精密に生成できる手法）を音声に応用した。</p>
+</li>
+<li>
+<p>時系列データに対して畳み込み（Ｄｉｌａｔｅｄ　ｃｏｎｖｏｌｕｔｉｏｎ）を適用した。</p>
+</li>
+<li>
+<p>コンピュータによる音声合成・音声認識に対して大きな衝撃を与えた技術といわれる。</p>
+</li>
+</ul>
+<p>※確認問題：</p>
+<ul>
+<li>
+<p>深層学習を用いて結合確率を学習する際に、効率的に学習が行えるアーキテクチャを提案したことがWaveNet の大きな貢献の1 つである。提案された新しいConvolution 型アーキテクチャは、 <strong>Dilated causal convolution</strong> と呼ばれ、結合確率を効率的に学習できるようになっている。</p>
+</li>
+<li>
+<p>Dilated causal convolutionを用いた際の大きな利点は、単純なConvolution layer と比べて、 <strong>パラメータ数に対する受容野が広い</strong> ことである。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%95%EF%BD%93%EF%BD%85%EF%BD%91%EF%BC%92%EF%BD%93%EF%BD%85%EF%BD%91">４－５．Ｓｅｑ２Ｓｅｑ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%91%EF%BD%93%EF%BD%85%EF%BD%91%EF%BC%92%EF%BD%93%EF%BD%85%EF%BD%91%E3%81%AE%E6%A6%82%E8%A6%81">４－５－１．Ｓｅｑ２Ｓｅｑの概要</h2>
+<ul>
+<li>
+<p>Ｅｎｃｏｄｅｒ-Ｄｅｃｏｄｅｒモデルとも呼ばれる。</p>
+</li>
+<li>
+<p>入力系列がＥｎｃｏｄｅ（内部状態に変換）され、内部状態からＤｅｃｏｄｅ（系列に変換）する。</p>
+</li>
+<li>
+<p>実応用上も、入力・出力共に系列情報なものは多い。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%95%EF%BC%8D%EF%BC%91%EF%BD%93%EF%BD%85%EF%BD%91%EF%BC%92%EF%BD%93%EF%BD%85%EF%BD%91%E3%81%AE%E6%A7%8B%E6%88%90">４－５－１．Ｓｅｑ２Ｓｅｑの構成</h2>
+<ul>
+<li>ＲＮＮ：系列データを読み込むために、再帰的に動作するニューラルネットワーク（出力が再び入力になる）。</li>
+</ul>
+<p>系列データを舐めて内部状態に変換できる（内部状態ベクトルを出力する）。</p>
+<ul>
+<li>言語モデル：単語の並びに確率（尤度）を与える。事前の情報により事後確率を求める。</li>
+</ul>
+<p>※実習：</p>
+<p><img src="img/Web_capture_11-7-2021_183216_localhost.jpeg" alt="lecture_chap1_exercise_public"></p>
+<pre><code>            ※実習５．評価の出力が空欄となる部分は未だ調査中です。
+</code></pre>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%96%EF%BD%94%EF%BD%92%EF%BD%81%EF%BD%8E%EF%BD%93%EF%BD%86%EF%BD%8F%EF%BD%92%EF%BD%8D%EF%BD%85%EF%BD%92">４－６．Ｔｒａｎｓｆｏｒｍｅｒ</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%91transformer%E3%81%AE%E6%A6%82%E8%A6%81">４－６－１．Transformerの概要</h2>
+<ul>
+<li>
+<p>計算速度向上のため、 <strong>再帰的ニューラルネットワーク (RNN) を使わずに、 Attention機構を使って</strong> 並列計算を可能にするモデルです。</p>
+</li>
+<li>
+<p>Attention （注意機構）は従来の RNN のモデル Seq2Seq などでも使われていました。</p>
+</li>
+<li>
+<p>合計が１となる重みを設定して、各隠れ層に分配していく仕組みである。</p>
+</li>
+</ul>
+<p>-　** 辞書オブジェクト** の機能となっている。入力であるqueryをkeyの検索により得られる類似の度合を、ソフトマックス関数で処理して、得られる正規化ベクトルによって、一致するValueを求めている。（Key Value Attention）</p>
+<ul>
+<li>
+<p>Attentionには、Source Target AttentionとSelf-Attentionがあり、Transformer は <strong>Self-Attention</strong> を使用している。Self-Attentionは入力を全て同じにして学習的に注意箇所を決めていきます。文脈を反映した自己表現が得られます。</p>
+</li>
+<li>
+<p>Transformer は文章などのシーケンスから別の文章などのシーケンスを予測するモデルとして発表されましたが、 Transformer の Encoder 部分を使ったモデルは文章分類などシーケンスからカテゴリを予測する問題等でも高い性能を出しており、特に最近発表された同じく Google の BERT (Bidirectional Encoder Representations from Transformers) は言語理解の様々なタスクのベンチマークで圧倒的なスコアを達成しました。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%92transformer%E3%81%AE%E6%A7%8B%E6%88%90--encoder-decoder">４－６－２．Transformerの構成 ～ Encoder-Decoder</h2>
+<ul>
+<li>
+<p>Transformer-EncoderはSelf-Attentionにより、文脈を考慮して、各単語をエンコードする。</p>
+</li>
+<li>
+<p>Position-Wise Feed-Forward Networksにより、 <strong>位置情報を保持</strong> したまま準伝播させます。</p>
+</li>
+<li>
+<p>Scaled dot product attentionにより、全単語に関するAttentionをまとめて計算する。（次元に応じてスケーリングしている）</p>
+</li>
+<li>
+<p>Multi-Head attentionでは、重みパラメータの異なる８個のヘッドを使用して、それぞれのヘッドが異なる種類の情報を収集して、役割分担をしている。</p>
+</li>
+<li>
+<p>Transformer-Decoderは６層（Encoderと同じ）あり、 <strong>各層で２種類の Attention</strong>を使用している。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%96%EF%BC%8D%EF%BC%93transformer%E3%81%AE%E7%89%B9%E5%BE%B4">４－６－３．Transformerの特徴</h2>
+<ul>
+<li>
+<p>Aｄｄ（Residual Connection）：入出力の差分を学習することで、学習を効率化する。</p>
+</li>
+<li>
+<p>Ｎｏｒｍ（Layer Normalization）：入力のバラツキを正則化して抑えることで、処理を高速化する。</p>
+</li>
+<li>
+<p>RNNを用いないので単語列の <strong>語順情報</strong> （位置情報）を追加する必要があるので <strong>Position Encoding</strong> を行っている。アドレス情報が２進数で付加される。</p>
+</li>
+</ul>
+<p>※実習：</p>
+<p><img src="img/Web_capture_11-7-2021_195258_localhost.jpeg" alt="lecture_chap2_exercise_public"></p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%97%E7%89%A9%E4%BD%93%E6%A4%9C%E7%9F%A5">４－７．物体検知</h2>
+<p>入力は画像で、出力の違いによって、タスクが分類、物体検知、意味領域分割、個体領域分割の４種類ある。</p>
+<ul>
+<li>
+<p>Classification（分類）：画像に対して、ラベルを出力する。</p>
+</li>
+<li>
+<p>OBJECT DELECTION（物体検知）：バウンディングボックス（物体の検出位置）</p>
+</li>
+<li>
+<p>SEMANTIC SEGMENTATION（意味領域分割）：各ピクセルにラベル出力する。</p>
+</li>
+<li>
+<p>INSTANCE SEGMENTATION（個体領域分割）：各ピクセルにラベル出力し、個体も識別する。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91object-delection%E7%89%A9%E4%BD%93%E6%A4%9C%E7%9F%A5">４－７－１．Object Delection（物体検知）</h2>
+<ul>
+<li>
+<p>一般的な出力は、何処（バウンディングボックス）に何（ラベル）がどんなコンフィデンス（確率）で存在しているかを示す。</p>
+</li>
+<li>
+<p>共通のデータセットによる結果が精度評価の指標となる。</p>
+</li>
+<li>
+<p>データセットの特徴としては、クラス数（物体の種類）、サンプル画像数、Box/画像（１画像当たり物体数）の３つが挙げられる。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91%EF%BC%92%E6%AE%B5%E9%9A%8E%E6%A4%9C%E5%87%BA%E5%99%A8%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%EF%BD%93%EF%BD%93%EF%BD%84%EF%BD%99%EF%BD%8F%EF%BD%8C%EF%BD%8F%E3%81%AA%E3%81%A9">４－７－１－１．２段階検出器：フレームワーク～ＳＳＤ、ＹＯＬＯなど</h3>
+<ul>
+<li>
+<p>候補領域の検出とクラスの推定を別々に行う。</p>
+</li>
+<li>
+<p>相対的に精度が高い傾向がある。</p>
+</li>
+<li>
+<p>相対的に計算量が大きく推論が遅い傾向がある。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%91%E6%AE%B5%E9%9A%8E%E6%A4%9C%E5%87%BA%E5%99%A8%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF%EF%BD%86%EF%BD%81%EF%BD%93%EF%BD%94%EF%BD%92%EF%BD%83%EF%BD%8E%EF%BD%8E%EF%BD%8D%EF%BD%81%EF%BD%93%EF%BD%8B%EF%BD%92%EF%BD%83%EF%BD%8E%EF%BD%8E%E3%81%AA%E3%81%A9">４－７－１－２．１段階検出器：フレームワーク～ＦａｓｔＲＣＮＮ、ＭａｓｋＲＣＮＮなど</h3>
+<ul>
+<li>
+<p>候補領域の検出とクラスの推定を同時に行う。</p>
+</li>
+<li>
+<p>相対的に精度が低い傾向がある。</p>
+</li>
+<li>
+<p>相対的に計算量が小さく推論が早い傾向がある。</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93%EF%BD%93%EF%BD%93%EF%BD%84%EF%BD%93%EF%BD%89%EF%BD%8E%EF%BD%87%EF%BD%8C%EF%BD%85-%EF%BD%93%EF%BD%88%EF%BD%8F%EF%BD%94-%EF%BD%84%EF%BD%85%EF%BD%94%EF%BD%85%EF%BD%83%EF%BD%94%EF%BD%8F%EF%BD%92">４－７－１－３．ＳＳＤ（Ｓｉｎｇｌｅ Ｓｈｏｔ Ｄｅｔｅｃｔｏｒ）</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%97%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93%EF%BC%8D%EF%BC%91%EF%BD%93%EF%BD%93%EF%BD%84%E3%81%AE%E6%A6%82%E8%A6%81">４－７－１－３－１．ＳＳＤの概要</h3>
+<ul>
+<li>
+<p>Default Boxを設置する。学習によって検出したい物体に合わせて変形し、コンフィデンスを出力する。</p>
+</li>
+<li>
+<p>ベースネットワークとしてＶＧＧ１６が使用される。</p>
+</li>
+<li>
+<p>マルチスケール特徴マップ</p>
+</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%98%E3%82%BB%E3%82%B0%E3%83%A1%E3%83%B3%E3%83%86%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3">４－８．セグメンテーション</h2>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91semantic-segmentation%E6%84%8F%E5%91%B3%E9%A0%98%E5%9F%9F%E5%88%86%E5%89%B2">４－８－１．Semantic segmentation（意味領域分割）</h2>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91%E3%82%A2%E3%83%83%E3%83%97%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AA%E3%83%B3%E3%82%B0">４－８－１－１．アップサンプリング</h3>
+<ul>
+<li>
+<p>解造像度が落とすことによって、画像のサイズが元の画像より小さくなっている。</p>
+</li>
+<li>
+<p>アップサンプリングする（プーリングによって解像度を落として領域分割した画像のサイズを元に戻すこと）。</p>
+</li>
+<li>
+<p>プーリングで失われた情報が復元されるわけではない。</p>
+</li>
+<li>
+<p>アップサンプリング前に、低レイヤからの出力の加算によって、ローカルな情報：輪郭を補完する。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92fcnfully-convolutional-network">４－８－１－２．FCN(Fully Convolutional Network)</h3>
+<ul>
+<li>ＶＧＧ１６の最後の３つのＦＣ層を、ＣＮＮに置き換えることで、特徴のヒートマップ画像にしている。</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93deconvolutiontransposed-convolution">４－８－１－３．Deconvolution/Transposed convolution</h3>
+<ul>
+<li>
+<p>特徴マップのPixel間隔をstrideだけ空ける。</p>
+</li>
+<li>
+<p>特徴マップの周りに(kernel size – 1) – paddingだけ余白を作る。</p>
+</li>
+<li>
+<p>畳み込み演算を行う。</p>
+</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%94unpooling">４－８－１－４．Unpooling</h3>
+<ul>
+<li>プーリング時に位置情報を残しておいて、アップサンプリングに再利用する。</li>
+</ul>
+<h3 id="%EF%BC%94%EF%BC%8D%EF%BC%98%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%95dilated-convolution">４－８－１－５．Dilated Convolution</h3>
+<ul>
+<li>カーネルのpixelに隙間を設けることで、Convolutionの段階で受容野を広げている。</li>
+</ul>
+
+</body>
+</html>

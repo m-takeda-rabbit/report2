@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report3.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E5%89%8D%E7%B7%A8">深層学習（前編）</h1>
+<p>ラビットチャレンジ</p>
+<p>m-takeda | 個人向けコース | 2021-06-22</p>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92day1">深層学習day1</h1>
+<h1 id="%EF%BC%91%E5%85%A5%E5%8A%9B%E5%B1%A4%E4%B8%AD%E9%96%93%E5%B1%A4">１．入力層～中間層</h1>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%E5%85%A5%E5%8A%9B%E5%B1%A4">１－１．入力層</h2>
+<p>ニューラルネットワークでデータを最初に受け取る場所。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%E3%83%8E%E3%83%BC%E3%83%89">１－２．ノード</h2>
+<p>データ１つ1つを受け取る部分をノードという。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%93%E9%87%8D%E3%81%BF">１－３．重み</h2>
+<p>重みは各々のデータをどの位使うべきかを決める。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%94%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9">１－４．バイアス</h2>
+<p>入力の全体に対して、調整するためのパラメータ。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%95%E7%B7%8F%E5%85%A5%E5%8A%9B">１－５．総入力</h2>
+<p>入力データを重み、バイアスを通して変換した値。総入力を活性化関数に通すと出力（次のニューラルネットワークの入力）となる。</p>
+<p>※確認テスト：中間層の総入力を計算しているソースコードは、「u2 = np.dot(z1, W2) + b2」</p>
+<h1 id="%EF%BC%92%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0">２．活性化関数</h1>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%91%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0">２－１．活性化関数</h2>
+<p>ニューラルネットワークにおいて、次の層への出力の大きさを決める非線形の関数。入力値の値によって、次の層への信号のON/OFFや強弱を定める働きをもつ。</p>
+<p>※確認テスト：2次元のグラフで、直線で表現できない関数が非線形の関数</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%92%E4%B8%AD%E9%96%93%E5%B1%A4%E7%94%A8%E3%81%AE%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0">２－２．中間層用の活性化関数</h2>
+<ul>
+<li>
+<p>ReLU関数</p>
+</li>
+<li>
+<p>シグモイド（ロジスティック）関数</p>
+</li>
+<li>
+<p>ステップ関数</p>
+</li>
+</ul>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%93%E5%87%BA%E5%8A%9B%E5%B1%A4%E7%94%A8%E3%81%AE%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0">２－３．出力層用の活性化関数</h2>
+<ul>
+<li>
+<p>ソフトマックス関数</p>
+</li>
+<li>
+<p>恒等写像</p>
+</li>
+<li>
+<p>シグモイド関数（ロジスティック関数）</p>
+</li>
+</ul>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%94%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0-%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E9%96%A2%E6%95%B0">２－４．活性化関数: ステップ関数</h2>
+<p>しきい値を超えたら発火する関数であり、出力は常に１か０。パーセプトロン（ニューラルネットワークの前身）で利用された関数。課題0 -1間の間を表現できず、線形分離可能なものしか学習できなかった。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%95%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0-%E3%82%B7%E3%82%B0%E3%83%A2%E3%82%A4%E3%83%89%E9%96%A2%E6%95%B0">２－５．活性化関数: シグモイド関数</h2>
+<p>0 ~ 1の間を緩やかに変化する関数で、ステップ関数ではON/OFFしかない状態に対し、信号の強弱を伝えられるようになり、予想ニューラルネットワーク普及のきっかけとなった。課題大きな値では出力の変化が微小なため、勾配消失問題を引き起こす事があった。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%96%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0-relu%E9%96%A2%E6%95%B0">２－６．活性化関数: ReLU関数</h2>
+<p>今最も使われている活性化関数勾配消失問題の回避とスパース化に貢献することで良い成果をもたらしている。</p>
+<p>※確認テスト：活性化関数を通している計算しているソースコードは、「z1 = functions.relu(u1)」</p>
+<p>※演習：
+<img src="img/Web_capture_16-6-2021_12215_localhost.jpeg" alt="1_1_forward_propagation"></p>
+<h1 id="%EF%BC%93%E5%87%BA%E5%8A%9B%E5%B1%A4">３．出力層</h1>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%91%E8%AA%A4%E5%B7%AE%E9%96%A2%E6%95%B0">３－１．誤差関数</h2>
+<p>誤差関数：ニューラルネットワークの出力と正解を比べて、一致具合を数値化する。</p>
+<p>※確認テスト：2乗するのは符号の影響を除くため、1/2するのは計算式の単純化のため。</p>
+<p>・２乗誤差関数： 回帰問題で使用される。「loss = functions.mean_squared_error(d, y)」</p>
+<p>・交差エントロピー：分類問題で使用される。「loss = functions.cross_entropy_error(d, y)」</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92%E5%87%BA%E5%8A%9B%E5%B1%A4%E3%81%AE%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0">３－２．出力層の活性化関数</h2>
+<p>学習結果である中間層の出力を利用者が扱える形に変化する。問題に応じて、使用する関数が使い分けられる。</p>
+<p>・恒等写像：回帰問題で使用される。何もしない関数。</p>
+<p>・シグモイド関数：２値分類で使用される。</p>
+<p>・ソフトマックス関数：多クラス分類で使用される。</p>
+<p>※確認テスト：ソフトマックス関数のソースコード</p>
+<p>def softmax(x):</p>
+<pre><code>if x.ndim == 2: # ミニバッチの場合
+
+    x = x.T #
+
+    x = x - np.max(x, axis=0) # オーバーフロー対策
+
+    y = np.exp(x) / np.sum(np.exp(x), axis=0) # 列方向でソフトマックス関数の式を実行
+
+    return y.T #
+
+x = x - np.max(x) # オーバーフロー対策
+
+return np.exp(x) / np.sum(np.exp(x)) # ソフトマックス関数の計算式本体
+</code></pre>
+<p>※確認テスト：交差エントロピー関数のソースコード</p>
+<p>def cross_entropy_error(d, y):</p>
+<pre><code>if y.ndim == 1: # ミニバッチの場合
+
+    d = d.reshape(1, d.size) #
+
+    y = y.reshape(1, y.size) #
+
+# 教師データがone-hot-vectorの場合、正解ラベルのインデックスに変換(不正解のラベルは０になる=誤差は0)
+
+if d.size == y.size: #
+
+    d = d.argmax(axis=1) #
+
+batch_size = y.shape[0] #
+
+return -np.sum(np.log(y[np.arange(batch_size), d] + 1e-7)) / batch_size # 交差エントロピー関数の計算式本体
+</code></pre>
+<h1 id="%EF%BC%94%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95">４．勾配降下法</h1>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95">４－１．勾配降下法</h2>
+<p>誤差を最小化するパラメータを発見する</p>
+<ul>
+<li>学習率の値によって学習の効率が大きく異なる</li>
+<li>学習率が大きすぎた場合、最小値にいつまでもたどり着かず発散してしまう</li>
+<li>学習率が小さい場合、発散することはないが時間がかかってしまう</li>
+</ul>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%E7%A2%BA%E7%8E%87%E7%9A%84%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95sgd">４－２．確率的勾配降下法（SGD)</h2>
+<p>ランダムに抽出したサンプルの誤差（勾配降下法は全サンプルの平均誤差）</p>
+<p>確率的勾配降下法のメリット</p>
+<p>・データが冗長な場合の計算コストの軽減</p>
+<p>・望まない局所極小解に収束するリスクの軽減</p>
+<p>・オンライン学習ができる</p>
+<p>※確認テスト：オンライン学習とは「データ１件ごとに学習を行うこと」</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%93%E3%83%9F%E3%83%8B%E3%83%90%E3%83%83%E3%83%81%E5%8B%BE%E9%85%8D%E9%99%8D%E4%B8%8B%E6%B3%95">４－３．ミニバッチ勾配降下法</h2>
+<p>ランダムに分割したデータの集合に属するサンプルの平均誤差</p>
+<p>ミニバッチ勾配降下法のメリット</p>
+<p>・確率的勾配降下法のメリットを損なわず、計算機の計算資源を有効利用できる→CPUを利用したスレッド並列化やGPUを利用したSIMD並列化算出された誤差を、出力層側から順に微分し、前の層前の層へと伝播。最小限の計算で各パラメータでの微分値を解析的に計算する手法</p>
+<p>※確認テスト：
+「次のエポックの重み」　←　「今回の誤差」× 学習率　→　「今回のエポックの重み」</p>
+<h1 id="%EF%BC%95%E8%AA%A4%E5%B7%AE%E9%80%86%E4%BC%9D%E6%92%AD%E6%B3%95">５．誤差逆伝播法</h1>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%91%E8%AA%A4%E5%B7%AE%E9%80%86%E4%BC%9D%E6%92%AD%E6%B3%95">５－１．誤差逆伝播法</h2>
+<p>算出された誤差を、出力層側から順に微分し、各層ごとに、前の層前の層へと伝播して、誤差勾配を計算する</p>
+<p>最小限の（再帰的な計算を避けた）計算で各パラメータでの微分値を（連鎖律を利用して）解析的に計算する手法（数値微分では計算量が多い）</p>
+<p>※確認テスト：</p>
+<p>delta2 = functions.d_mean_squared_error(d, y) ＃ 出力層の微分を</p>
+<p>delta1 = np.dot(delta2, W2.T) * functions.d_sigmoid(z1) # 前の層の微分に使用</p>
+<p>※確認テスト：</p>
+<p>delta2 = functions.d_mean_squared_error(d, y) ＃ 活性化関数は恒等写像</p>
+<p>grad['W2'] = np.dot(z1.T, delta2) # W2の傾き</p>
+<p>※演習：
+<img src="img/Web_capture_16-6-2021_122412_localhost.jpeg" alt="1_2_back_propagation"></p>
+<h1 id="%EF%BC%96%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E4%BD%9C%E6%88%90%E6%99%82%E3%81%AE%E7%95%99%E6%84%8F%E4%BA%8B%E9%A0%85">６．ニューラルネットワーク作成時の留意事項</h1>
+<h2 id="%EF%BC%96%EF%BC%8D1%E5%85%A5%E5%8A%9B%E5%B1%A4%E3%81%AE%E8%A8%AD%E8%A8%88">６－1．入力層の設計</h2>
+<p>入力層として取るべきでないデータ</p>
+<ul>
+<li>欠損値が多いデータ</li>
+<li>誤差の大きいデータ</li>
+<li>出力そのもの、出力を加工した情報</li>
+<li>連続性の無いデータ</li>
+<li>無意味な数が割り当てられているデータ</li>
+</ul>
+<h2 id="%EF%BC%96%EF%BC%8D%EF%BC%92%E9%81%8E%E5%AD%A6%E7%BF%92">６－２．過学習</h2>
+<p>一般に、パラメータの多い巨大なニューラルネットワークで発生する現象。</p>
+<p>過学習を見分けるには、訓練用のデータとテスト用データに分けて、訓練用データで学習した後のテスト用データでの成績が悪くなることで判断することができる。</p>
+<h2 id="%EF%BC%96%EF%BC%8D%EF%BC%93%E3%83%87%E3%83%BC%E3%82%BF%E9%9B%86%E5%90%88%E3%81%AE%E6%8B%A1%E5%BC%B5">６－３．データ集合の拡張</h2>
+<p>画像認識に効果が高い。</p>
+<p>様々な変換（オフセット、ノイズ、ドロップアウト、JPEG圧縮、ぼかし、色温度、ジグゾー、拡大縮小、回転、剪断、回転９０度、クロップ）を組み合わせて水増しデータを生成する。</p>
+<p>変換の結果が、データセット内で混同するデータが発生しないようにする。</p>
+<p>中間層へのノイズ注入で様々な抽象化レベルでのデータ拡張ができる。</p>
+<h2 id="%EF%BC%96%EF%BC%8D%EF%BC%94%EF%BD%83%EF%BD%8E%EF%BD%8E%E3%81%A7%E6%89%B1%E3%81%88%E3%82%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E7%A8%AE%E9%A1%9E">６－４．ＣＮＮで扱えるデータの種類</h2>
+<p>次元間で繋がりのあるデータ（音声、カラー画像、動画）</p>
+<h2 id="%EF%BC%96%EF%BC%8D%EF%BC%95%E7%89%B9%E5%BE%B4%E9%87%8F%E3%81%AE%E8%BB%A2%E7%A7%BB">６－５．特徴量の転移</h2>
+<p>特徴量の抽出済みのベースモデルを使用する。</p>
+<p>転移学習：ベースモデルの重みは固定する（更新しない）。</p>
+<p>ファインチューニング：ベースモデルの重みを再学習する。</p>
+<h1 id="%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92day2">深層学習day2</h1>
+<h1 id="%EF%BC%91%E5%8B%BE%E9%85%8D%E6%B6%88%E5%A4%B1%E5%95%8F%E9%A1%8C">１．勾配消失問題</h1>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%91%E6%B4%BB%E6%80%A7%E5%8C%96%E9%96%A2%E6%95%B0%E3%81%AE%E9%81%B8%E6%8A%9E">１－１．活性化関数の選択</h2>
+<p>ReLU関数が今最も使われている活性化関数。</p>
+<p>勾配消失問題の回避とスパース化に貢献することで良い成果をもたらしている（シグモイド関数では値が小さくなる）。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%E5%88%9D%E6%9C%9F%E5%80%A4%E3%81%AE%E8%A8%AD%E5%AE%9A%E6%96%B9%E6%B3%95">１－２．初期値の設定方法</h2>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%91%E9%87%8D%E3%81%BF%E3%81%AE%E5%88%9D%E6%9C%9F%E5%80%A4%E8%A8%AD%E5%AE%9A-xavier">１－２－１．重みの初期値設定-Xavier</h2>
+<p>・初期値を設定するための活性化関数には下記の関数を用いる。</p>
+<ul>
+<li>ReLU関数</li>
+<li>シグモイド（ロジスティック）関数</li>
+<li>双曲線正接関数</li>
+</ul>
+<p>・Xavierの初期値の設定方法：重みの要素を、前の層のノード数の平方根で除算した値。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%8D%EF%BC%92%E9%87%8D%E3%81%BF%E3%81%AE%E5%88%9D%E6%9C%9F%E5%80%A4%E8%A8%AD%E5%AE%9A-he">１－２－２．重みの初期値設定-He</h2>
+<p>・Heの初期値を設定する際の活性化関数にはReLU関数を用いる。</p>
+<p>・初期値の設定方法：重みの要素を、前の層のノード数の平方根で除算した値に対し√２をかけ合わせた値。</p>
+<p>※確認テスト：重みの初期値をゼロに設置すると、学習によって調整する機能がなくなる。</p>
+<h2 id="%EF%BC%91%EF%BC%8D%EF%BC%93%E3%83%90%E3%83%83%E3%83%81%E6%AD%A3%E8%A6%8F%E5%8C%96">１－３．バッチ正規化</h2>
+<p>ミニバッチ単位で、入力値のデータ偏りを抑制する手法。
+活性化関数に値を渡す前後に、バッチ正規化の処理を孕んだ層を加える。</p>
+<p>※確認テスト：バッチ正規化の効果</p>
+<p>・勾配消失を抑制する。</p>
+<p>・あらかじめデータを整えることになり、計算が速くなる。</p>
+<p>※演習：
+<img src="img/Web_capture_16-6-2021_122820_localhost.jpeg" alt="2_2_1_vanishing_gradient"></p>
+<h1 id="%EF%BC%92%E5%AD%A6%E7%BF%92%E7%8E%87%E6%9C%80%E9%81%A9%E5%8C%96%E6%89%8B%E6%B3%95">２．学習率最適化手法</h1>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%91%E3%83%A2%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%A0">２－１．モメンタム</h2>
+<p>誤差をパラメータで微分したものと学習率の積を減算した後、現在の重みに前回の重みを減算した値と慣性の積を加算する。</p>
+<p>・局所的最適解にはならず、大域的最適解となる。</p>
+<p>・谷間についてから最も低い位置(最適値)にいくまでの時間が早い。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%92%EF%BD%81%EF%BD%84%EF%BD%81%EF%BD%87%EF%BD%92%EF%BD%81%EF%BD%84">２－２．ＡｄａＧｒａｄ</h2>
+<p>誤差をパラメータで微分したものと再定義した学習率の積を減算する。</p>
+<p>・勾配の緩やかな斜面に対して、最適値に近づける。</p>
+<p>・学習率が徐々に小さくなるので、鞍点問題を引き起こす事があった。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%93%EF%BD%92%EF%BD%8D%EF%BD%93%EF%BD%90%EF%BD%92%EF%BD%8F%EF%BD%90">２－３．ＲＭＳＰｒｏｐ</h2>
+<p>誤差をパラメータで微分したものと再定義した学習率の積を減算する。</p>
+<p>・局所的最適解にはならず、大域的最適解となる。</p>
+<p>・ハイパーパラメータの調整が必要な場合が少ない。</p>
+<h2 id="%EF%BC%92%EF%BC%8D%EF%BC%94%EF%BD%81%EF%BD%84%EF%BD%81%EF%BD%8D">２－４．Ａｄａｍ</h2>
+<p>・モメンタムの、過去の勾配の指数関数的減衰平均。</p>
+<p>・RMSPropの、過去の勾配の2乗の指数関数的減衰平均。</p>
+<p>上記をそれぞれ孕んだ最適化アルゴリズムである。</p>
+<p>※演習：
+<img src="img/Web_capture_22-6-2021_122354_localhost.jpeg" alt="2_4_optimizer"></p>
+<p>[try] 学習率を変えてみよう</p>
+<p>・learning_rate = 0.09に変更</p>
+<p>[try] 活性化関数と重みの初期化方法を変更して違いを見てみよう</p>
+<p>・activationはReLU、weight_init_stdは'He'に変更</p>
+<p>[try] バッチ正規化をして変化を見てみよう</p>
+<p>・use_batchnormをTrueに変更</p>
+<p><img src="img/Web_capture_21-6-2021_123438_localhost.jpeg" alt="2_4_optimizer"></p>
+<h1 id="%EF%BC%93%E9%81%8E%E5%AD%A6%E7%BF%92">３．過学習</h1>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%91%E9%81%8E%E5%AD%A6%E7%BF%92">３－１．過学習</h2>
+<p>学習データにフィットし過ぎることで、汎化性能が落ちること。</p>
+<p>テスト誤差と訓練誤差との学習曲線が乖離する。</p>
+<p>大きなニューラルネットワークほど発生しやすい。</p>
+<p>重みが大きい値となることで起こる過学習の解決策として、誤差に対して正則化項を加えることで、重みを抑制する。</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%92l1%E6%AD%A3%E5%89%87%E5%8C%96l2%E6%AD%A3%E5%89%87%E5%8C%96">３－２．L1正則化、L2正則化</h2>
+<p>ネットワークの自由度を制約すること。</p>
+<p>誤差関数にノルムを加える。</p>
+<p>誤差に対して正則化項を加えることで重みを抑える。誤差をパラメータで微分したものと学習率の積を減算した後、現在の重みに前回の重みを減算した値と慣性の積を加算する。</p>
+<p>※例題：Ｌ２パラメータの正則化</p>
+<p>def ridge(param,grad,rate):</p>
+<pre><code>param: target paramater
+grad : gradients to param
+rate : ridge coefficient
+grad += rate * param
+</code></pre>
+<p>・演習ソース（2_5_overfiting）では</p>
+<pre><code>grad['W' + str(idx)] = network.layers['Affine' + str(idx)].dW + weight_decay_lambda * network.params['W' + str(idx)]
+weight_decay += 0.5 * weight_decay_lambda * np.sqrt(np.sum(network.params['W' + str(idx)] ** 2))
+</code></pre>
+<p>※例題：Ｌ１パラメータの正則化</p>
+<p>def lasso(param,grad,rate):</p>
+<pre><code>param: target paramater
+grad : gradients to param
+rate : lasso coefficient
+x = sign(param)
+grad += rate * x
+</code></pre>
+<p>・演習ソース（2_5_overfiting）では</p>
+<pre><code>grad['W' + str(idx)] = network.layers['Affine' + str(idx)].dW + weight_decay_lambda * np.sign(network.params['W' + str(idx)])
+weight_decay += weight_decay_lambda * np.sum(np.abs(network.params['W' + str(idx)]))
+</code></pre>
+<p>※例題：データ集合の拡張</p>
+<p>def randge_crop(image,crop_size)</p>
+<pre><code>image:(hight,width,channel)
+crop_size:(crop_hight,crop_width)
+hight &gt;= crop_hight,width &gt;= crop_width
+h, w, _ = image.shape
+crop_h, crop_w = crop_size
+top = np.random.randint(0, h - crop_h)
+left = np.random.randint(0, w - crop_w)
+bottom = top + crop_h
+right = left + crop_w
+image = image[bottom:top,right:left,:]
+return image
+</code></pre>
+<p>※確認テスト：リッジ回帰（L2正則化）はハイパーパラメータを大きくすると重みがゼロに近づく</p>
+<p>※確認テスト：L1正則化をグラフで表すと、正則化項がスパース推定の方形で表現される</p>
+<h2 id="%EF%BC%93%EF%BC%8D%EF%BC%93%E3%83%89%E3%83%AD%E3%83%83%E3%83%97%E3%82%A2%E3%82%A6%E3%83%88">３－３．ドロップアウト</h2>
+<p>過学習の課題：ノードの数が多いこと。</p>
+<p>ドロップアウトとは：ランダムにノードを削除して学習させること（データ量を変化させずに、異なるモデルを学習させていると解釈できる）。</p>
+<p>※演習：
+<img src="img/Web_capture_18-6-2021_12278_localhost.jpeg" alt="2_5_overfiting"></p>
+<p>[try] weight_decay_lambdaの値を変更して正則化の強さを確認しよう</p>
+<p>・weight_decay_lambda = 0.008</p>
+<p>[try] dropout_ratioの値を変更してみよう</p>
+<p>・dropout_ratio = 0.19</p>
+<p>[try] optimizerとdropout_ratioの値を変更してみよう</p>
+<p>・optimizer = optimizer.Momentum(learning_rate=0.01, momentum=0.9)
+<img src="img/Web_capture_23-6-2021_123431_localhost.jpeg" alt="2_5_overfiting"></p>
+<p>・optimizer = optimizer.AdaGrad(learning_rate=0.01)
+<img src="img/Web_capture_23-6-2021_122734_localhost.jpeg" alt="2_5_overfiting"></p>
+<p>・optimizer = optimizer.Adam()
+<img src="img/Web_capture_23-6-2021_121431_localhost.jpeg" alt="2_5_overfiting"></p>
+<h1 id="%EF%BC%94%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AE%E6%A6%82%E5%BF%B5">４．畳み込みニューラルネットワークの概念</h1>
+<p>・「畳み込み層」「プーリング層」を構造に含み、画像分野のソリューションで効果を発揮している。</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E5%B1%A4">４－１．畳み込み層</h2>
+<p>フィルター（全結合層の重みに相当）により特徴を抽出する・</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%91%E3%83%90%E3%82%A4%E3%82%A2%E3%82%B9">４－１－１．バイアス</h2>
+<p>バイアスの値は1つだけであり、同じ値がフィルター適用後のすべての要素に加算される。</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%92%E3%83%91%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0">４－１－２．パディング</h2>
+<p>データの周辺を固定値で埋めて、畳み込み処理でのデータ縮小を抑制する（端の特徴を捉える）。</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%93%E3%82%B9%E3%83%88%E3%83%A9%E3%82%A4%E3%83%89">４－１－３．ストライド</h2>
+<p>畳み込み処理でのフィルターの移動量の大きさ。</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%91%EF%BC%8D%EF%BC%94%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB">４－１－４．チャンネル</h2>
+<p>データの奥行方向の層数。</p>
+<h2 id="%EF%BC%94%EF%BC%8D%EF%BC%92%E3%83%97%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E5%B1%A4">４－２．プーリング層</h2>
+<p>・MAXプーリング：特徴マップの解像度を下げるとき、対象領域の「最大値」を採用する。</p>
+<p>・AVRプーリング：特徴マップの解像度を下げるとき、対象領域の「平均値」を採用する。</p>
+<p>※確認テスト：
+サイズ６×６の入力画像をサイズ２×２のフィルタでストライド１、パディング１の畳み込み処理で７×７の出力画像になる。
+（各次元ごとに：O=(I＋２P-F)/S+1）</p>
+<p>※演習：</p>
+<p>・関数内でtransposeの処理をしている行をコメントアウトして下のコードを実行してみよう
+<img src="img/Web_capture_19-6-2021_21947_localhost.jpeg" alt="2_6_simple_convolution_network"></p>
+<p>・im2colの確認で出力したcolをimageに変換して確認しよう</p>
+<p><img src="img/Web_capture_22-6-2021_124651_localhost.jpeg" alt="2_6_simple_convolution_network"></p>
+<h1 id="%EF%BC%95%E6%9C%80%E6%96%B0%E3%81%AE%EF%BD%83%EF%BD%8E%EF%BD%8E">５．最新のＣＮＮ</h1>
+<h2 id="%EF%BC%95%EF%BC%8D%EF%BC%91%EF%BD%81%EF%BD%8C%EF%BD%85%EF%BD%98%EF%BD%8E%EF%BD%85%EF%BD%94">５－１．ＡｌｅｘＮｅｔ</h2>
+<p>・5層の畳み込み層およびプーリング層など、それに続く3層の全結合層から構成される。</p>
+<p>・過学習対策としてサイズ4096の全結合層の出力にドロップアウトを使用している。</p>
+<p>AlexNetとは2012年に開かれた画像認識コンペティション2位に大差をつけて優勝したモデルである。AlexNetの登場で、ディープラーニングが大きく注目を集めた。</p>
+
+</body>
+</html>
